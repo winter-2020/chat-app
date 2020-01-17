@@ -1,0 +1,138 @@
+:root {
+  --col-bg: #eeeeee;
+  --col-bg-fg: #222222;
+
+  --col-accent1:  palevioletred;
+  --col-accent1-fg: #000000;
+
+  --col-accent2:  plum;
+  --col-accent2-fg: #000000;
+
+  --col-accent3:  mediumslateblue;
+  --col-accent3-fg: #ffffff;
+
+  --col-action: firebrick;
+  --col-action-fg: #ffffff;
+
+  --col-error: tomato;
+  --col-error-fg: #000000;
+
+  --font-body: serif;
+  --font-heading: sans-serif;
+  --animations: 0.3s;
+}
+
+body {
+  background-color: var(--col-bg);
+  color: var(--col-bg-fg);
+  font-family: var(--font-body);
+  margin-top: 2.1875em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  line-height: 1.25;
+  margin: 0.25em 0;
+}
+
+h1 {
+  font-size: 1.25em;
+}
+
+.branding {
+  background-color: var(--col-accent2);
+  color: var(--col-accent2-fg);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  /* opacity: 0.5; */
+}
+
+.others {
+  color: var(--col-accent1-fg);
+  position: fixed;
+  top: 2.1875em;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 2.1875em);
+  
+}
+
+.panel {
+  background-color: var(--col-accent1);
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  padding: 1em;
+  transform: translateX(-100%);
+  transition: opacity var(--animations), transform var(--animations);
+}
+.layout.open .panel {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+
+
+.toggle-others {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.conversation {
+  padding: 0 1em;
+}
+
+.message {
+  margin: 1em 0;
+  padding: 1em;
+  border-radius: 0.25em;
+  box-shadow: 0 0 0.5em rgba(0,0,0,0.25);
+}
+.message.from-me {
+  background-color: var(--col-accent3);
+  color: var(--col-accent3-fg);
+  text-align: right;
+}
+.message.from-them {
+  background-color: var(--col-accent3-fg);
+  color: var(--col-accent3);
+  text-align: left;
+}
+.message .meta {
+  font: 0.75em var(--font-heading);
+  margin-top: 1em;
+}
+.message .meta::before {
+  content: "👤 ";
+}
+.message .meta time::before {
+  content: " ⏱ ";
+}
+
+
+
+
+@media screen and (min-width: 40em) {
+  .others {
+    left: -15em;
+    width: 15em;
+    transition: left var(--animations);
+  }
+  .conversation {
+    transform: translateX(0);
+    transition: transform var(--animations);
+  }
+  
+  .layout.open .others {
+    /* transform: translateX(0em); */
+    left: 0;
+  }
+  .layout.open .conversation {
+    /* margin-left: 15em; */
+    transform: translateX(15em);
+  }
+}
